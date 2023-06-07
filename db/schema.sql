@@ -1,7 +1,8 @@
 DROP DATABASE IF EXISTS asocial_dev;
 CREATE DATABASE asocial_dev;
 \c asocial_dev;
---user info
+
+-- user info
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR(255) NOT NULL,
@@ -16,7 +17,7 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE (username)
 );
 
---messages 
+-- messages 
 CREATE TABLE IF NOT EXISTS messages (
   id SERIAL PRIMARY KEY,
   text VARCHAR(255) NOT NULL,
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS messages (
   user_id INT REFERENCES users(id) ON DELETE CASCADE
 );
 
---locations for the map
+-- locations for the map
 CREATE TABLE IF NOT EXISTS locations (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
@@ -34,7 +35,7 @@ CREATE TABLE IF NOT EXISTS locations (
   rating NUMERIC(2, 1) DEFAULT 0
 );
 
---reviews 
+-- reviews 
 CREATE TABLE IF NOT EXISTS reviews (
   id SERIAL PRIMARY KEY,
   location_id INT REFERENCES locations(id) ON DELETE CASCADE,
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS reviews (
   UNIQUE (user_id, location_id)
 );
 
---forum blocks 
+-- forum blocks 
 
 CREATE TABLE IF NOT EXISTS forum_categories (
   id SERIAL PRIMARY KEY,
@@ -101,7 +102,8 @@ CREATE TABLE IF NOT EXISTS forums (
   forum_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   forum_posts TEXT NOT NULL,
   user_id INT REFERENCES users(id) ON DELETE CASCADE,
-  category_id INT REFERENCES forum_categories(id) ON DELETE CASCADE
+  category_id INT REFERENCES forum_categories(id) ON DELETE CASCADE,
+  topic_id INT REFERENCES forum_topics(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS forum_replies (
