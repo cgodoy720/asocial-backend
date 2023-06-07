@@ -42,7 +42,6 @@ CREATE TABLE IF NOT EXISTS reviews (
   rating NUMERIC(2, 1),
   comment TEXT,
   review_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  review_updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE (user_id, location_id)
 );
 
