@@ -7,44 +7,6 @@ VALUES
   ('Jamal', 'Partridge', 'jamalpartridge@pursuit.org', 'Akeem123', '1988-09-29', 'Jamal11', 'https://res.cloudinary.com/dtabunojn/image/upload/v1685955845/12_xqzfma.png', 'he/him', 'I am here just hanging out.'),
   ('Triane', 'Peart', 'TrianePeart@pursuit.org', 'HappyBelly02', '1994-05-22', 'JustCallMeAna', 'https://res.cloudinary.com/dtabunojn/image/upload/v1685955845/4_wcue8d.png', 'she/her', 'Lost in space.');
 
-INSERT INTO forums (forum_title, forum_description, forum_posts, user_id, category_id, forum_created_at) VALUES
-  ('Parenting Support Group', 'A forum for parents to share their experiences and seek support.', 'Welcome to the Parenting Support Group forum!', 1, 1, NOW()),
-  ('Mental Health Discussions', 'Discussing various aspects of mental health and sharing resources.', 'Introduce yourself and join the mental health discussions!', 2, 1, NOW()),
-  ('Crafting Corner', 'A place for craft enthusiasts to showcase their projects and exchange ideas.', 'Share your latest craft projects and get inspired by others!', 1, 5, NOW()),
-  ('Trigger Warning Discussions', 'A safe space to discuss triggering topics with sensitivity and care.', 'Share your thoughts and experiences in a supportive environment.', 3, 1, NOW()); 
-
-INSERT INTO forum_categories (category_name) VALUES ('Venting and Support'), ('Accessibility'), ('Vibe Check'), ('Family'), ('Hobbies'), ('General Chat');
-
-INSERT INTO forum_topics (topic_name) VALUES ('Parenting'), ('Parents'), ('Siblings'), ('Friends'), ('Mental Health'), ('LGBTQ+'), ('Neurodivergent'), ('Random'), ('Disabilities'), ('General'), ('Home Life'), ('Reflections'), ('Discussions'), ('Games'), ('Sports'), ('Writing'), ('Crafts'), ('Other'), ('School'), ('Work'), ('Trigger Warning');
-
-INSERT INTO category_topics (category_id, topic_id) VALUES
-  (1, 1),   -- Venting and Support -> Parenting
-  (1, 2),   -- Venting and Support -> Parents
-  (1, 3),   -- Venting and Support -> Siblings
-  (1, 4),   -- Venting and Support -> Friends
-  (1, 5),   -- Venting and Support -> Mental Health
-  (2, 5),   -- Accessibility -> Mental Health
-  (2, 6),   -- Accessibility -> LGBTQ+
-  (2, 7),   -- Accessibility -> Neurodivergent
-  (3, 8),   -- Vibe Check -> Random
-  (4, 9),   -- Family -> Disabilities
-  (5, 10),  -- Hobbies -> General
-  (5, 11),  -- Hobbies -> Home Life
-  (5, 12),  -- Hobbies -> Reflections
-  (6, 13),  -- General Chat -> Discussions
-  (6, 14),  -- General Chat -> Games
-  (6, 15),  -- General Chat -> Sports
-  (6, 16),  -- General Chat -> Writing
-  (6, 17),  -- General Chat -> Crafts
-  (6, 18),  -- General Chat -> Other
-  (6, 19),  -- General Chat -> School
-  (6, 20),  -- General Chat -> Work
-  (6, 21);  -- General Chat -> Trigger Warning
-
-INSERT INTO forum_replies (user_id, forum_id, reply_content, reply_created_at) 
-VALUES (1, 2, 'Thats crazy bro', NOW()), 
-(2, 2, 'you dont need that sis', NOW());
-
 INSERT INTO messages (text, timestamp,user_id) VALUES
 ('Hello','2023-05-14T08:30:00.000Z',1),
 ('How are you?','2023-05-14T08:31:00.000Z',2),
@@ -61,3 +23,47 @@ VALUES
   (1, 4.5, 'Great place to visit!'),
   (1, 3.8, 'Decent atmosphere, but service could be better.'),
   (2, 5.0, 'Highly recommended! Friendly staff and delicious food.');
+
+INSERT INTO forum_topics (topic_name, is_selected) VALUES
+  ('Parenting', false),
+  ('Parents', false),
+  ('Siblings', false),
+  ('Friends', false),
+  ('Mental Health', false),
+  ('LGBTQ+', false),
+  ('Neurodivergent', false),
+  ('Random', false),
+  ('Disabilities', false),
+  ('General', false),
+  ('Home Life', false),
+  ('Reflections', false),
+  ('Discussions', false),
+  ('Games', false),
+  ('Sports', false),
+  ('Writing', false),
+  ('Crafts', false),
+  ('Other', false),
+  ('School', false),
+  ('Work', false),
+  ('Trigger Warning', false);
+-- Insert forum categories
+INSERT INTO forum_categories (category_name, isVentingAndSupport, isAccessibility, isVibeCheck, isFamily, isHobbies, isGeneralChat) VALUES
+  ('Venting and Support', true, false, false, false, false, false),
+  ('Accessibility', false, true, false, false, false, false),
+  ('Vibe Check', false, false, true, false, false, false),
+  ('Family', false, false, false, true, false, false),
+  ('Hobbies', false, false, false, false, true, false),
+  ('General Chat', false, false, false, false, false, true);
+
+-- Insert forums
+INSERT INTO forums (forum_title, forum_description, forum_posts, user_id, category_id, topic_id) VALUES
+  ('Just Doing Stuff', 'Im unsure', 'Forum 1 Posts', 1, 1, 1),
+  ('Testing This Out', 'This thing', 'Forum 2 Posts', 2, 2, 2),
+  ('Blah blah blah', 'This test', 'Forum 3 Posts', 3, 3, 3);
+
+-- Insert forum replies
+INSERT INTO forum_replies (reply_content, reply_created_at, user_id, forum_id) VALUES
+  ('Reply 1 for Forum 1', CURRENT_TIMESTAMP, 1, 1),
+  ('Reply 2 for Forum 1', CURRENT_TIMESTAMP, 2, 1),
+  ('Reply 1 for Forum 2', CURRENT_TIMESTAMP, 2, 2),
+  ('Reply 1 for Forum 3', CURRENT_TIMESTAMP, 3, 3);

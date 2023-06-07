@@ -23,7 +23,15 @@ const getAllCategories = async () => {
 // Creating category
 const createCategory = async (category) => {
   try {
-    const newCategory = await db.one("INSERT INTO forum_categories (category_name) VALUES($1) RETURNING *", [category.category_name]);
+    const newCategory = await db.one("INSERT INTO forum_categories (category_name, isVentingAndSupport, isAccessibility, isVibeCheck, isFamily, isHobbies, isGeneralChat) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *", [
+      category.category_name,
+      category.isVentingAndSupport,
+      category.isAccessibility,
+      category.isVibeCheck,
+      category.isFamily,
+      category.isHobbies,
+      category.isGeneralChat
+    ]);
     return newCategory;
   } catch (error) {
     throw new Error('Error: Category creation failed.');

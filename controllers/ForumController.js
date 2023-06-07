@@ -9,13 +9,8 @@ const {
 } = require("../queries/forums");
 
 const RepliesController = require('./RepliesController')
-// const categoryController = require('./categoryController')
-// const TopicController = require('./TopicController')
-
-
 forum.use('/:forumId/replies', RepliesController)
-// forums.use('/:forumId/categories', categoryController)
-// forums.use('/:forumId/topics', TopicController)
+
 
 
 // Get all forums

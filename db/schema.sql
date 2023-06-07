@@ -48,51 +48,21 @@ CREATE TABLE IF NOT EXISTS reviews (
 
 -- forum blocks 
 
-CREATE TABLE IF NOT EXISTS forum_categories (
-  id SERIAL PRIMARY KEY,
-  category_name VARCHAR(50) NOT NULL
-);
-
-INSERT INTO forum_categories (category_name) VALUES
-  ('Venting and Support'),
-  ('Accessibility'),
-  ('Vibe Check'),
-  ('Family'),
-  ('Hobbies'),
-  ('General Chat');
-
 CREATE TABLE IF NOT EXISTS forum_topics (
   id SERIAL PRIMARY KEY,
-  topic_name VARCHAR(50) NOT NULL
+  topic_name VARCHAR(255) NOT NULL,
+  is_selected BOOLEAN NOT NULL
 );
 
-INSERT INTO forum_topics (topic_name) VALUES
-  ('Parenting'),
-  ('Parents'),
-  ('Siblings'),
-  ('Friends'),
-  ('Mental Health'),
-  ('LGBTQ+'),
-  ('Neurodivergent'),
-  ('Random'),
-  ('Disabilities'),
-  ('General'),
-  ('Home Life'),
-  ('Reflections'),
-  ('Discussions'),
-  ('Games'),
-  ('Sports'),
-  ('Writing'),
-  ('Crafts'),
-  ('Other'),
-  ('School'),
-  ('Work'),
-  ('Trigger Warning');
-
-CREATE TABLE IF NOT EXISTS category_topics (
-  category_id INT REFERENCES forum_categories(id) ON DELETE CASCADE,
-  topic_id INT REFERENCES forum_topics(id) ON DELETE CASCADE,
-  PRIMARY KEY (category_id, topic_id)
+CREATE TABLE IF NOT EXISTS forum_categories (
+  id SERIAL PRIMARY KEY,
+  category_name VARCHAR(255) NOT NULL,
+  isVentingAndSupport BOOLEAN NOT NULL,
+  isAccessibility BOOLEAN NOT NULL,
+  isVibeCheck BOOLEAN NOT NULL,
+  isFamily BOOLEAN NOT NULL,
+  isHobbies BOOLEAN NOT NULL,
+  isGeneralChat BOOLEAN NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS forums (
@@ -103,7 +73,7 @@ CREATE TABLE IF NOT EXISTS forums (
   forum_posts TEXT NOT NULL,
   user_id INT REFERENCES users(id) ON DELETE CASCADE,
   category_id INT REFERENCES forum_categories(id) ON DELETE CASCADE,
-  topic_id INT REFERENCES forum_topics(id) ON DELETE CASCADE
+  topic_id INT REFERENCES forum_topics(id) ON DELETE CASCA
 );
 
 CREATE TABLE IF NOT EXISTS forum_replies (

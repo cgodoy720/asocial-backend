@@ -26,13 +26,14 @@ const getForum = async (id) => {
 const createForum = async (forum) => {
   try {
     const query =
-      "INSERT INTO forums (forum_title, forum_description, forum_posts, user_id, category_id) VALUES ($1, $2, $3, $4, $5) RETURNING *";
+      "INSERT INTO forums (forum_title, forum_description, forum_posts, user_id, category_id, topic_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
     const newForum = await db.one(query, [
       forum.forum_title,
       forum.forum_description,
       forum.forum_posts,
       forum.user_id,
-      forum.category_id
+      forum.category_id,
+      forum.topic_id
     ]);
     return newForum;
   } catch (error) {
@@ -55,8 +56,16 @@ const deleteForum = async (id) => {
 const updateForum = async (id, forum) => {
   try {
     const query =
-      "UPDATE forums SET title = $1, description = $2 WHERE id = $3 RETURNING *";
-    const updatedForum = await db.one(query, [forum.title, forum.description, id]);
+      "UPDATE forums SET forum_title = $1, forum_description = $2, forum_posts = $3, user_id = $4, category_id = $5, topic_id = $6 WHERE id = $7 RETURNING *";
+    const updatedForum = await db.one(query, [
+      forum.forum_title,
+      forum.forum_description,
+      forum.forum_posts,
+      forum.user_id,
+      forum.category_id,
+      forum.topic_id,
+      id
+    ]);
     return updatedForum;
   } catch (error) {
     throw new Error(`Error updating forum with id ${id}`);

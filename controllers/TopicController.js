@@ -1,43 +1,65 @@
-const db = require('../db/dbConfig');
+const express = require("express");
+const topics = express.Router({ mergeParams: true });
+const {
+  getAllTopics,
+  getTopic,
+  createTopic,
+  deleteTopic,
+} = require("../queries/topics");
 
-// Getting all topics
-const getAllTopics = async () => {
+topics.get("/", async (_, res) => {
   try {
-    const allTopics = await db.any("SELECT * FROM forum_topics");
-    return allTopics;
-  } catch (err) {
-    throw new Error('Error: Topics Not Found.');
-  }
-};
+    const allTopics = await getAllTopics();
 
-// Getting topic by id
-const getTopic = async (id) => {
-  try {
-    const topic = await db.one("SELECT * FROM forum_topics WHERE id=$1", id);
-    return topic;
-  } catch (err) {
-    throw new Error('Error: Topic Not Found.');
-  }
-};
-
-// Creating topics
-const createTopic = async (topic) => {
-  try {
-    const newTopic = await db.one("INSERT INTO forum_topics (topic_name) VALUES($1) RETURNING *", [topic.topic_name]);
-    return newTopic;
+    if (allTopics) {
+      res.status(200).json(allTopics);
+    } else {
+      res.status(500).json({ error: "Error getting all topics" });
+    }
   } catch (error) {
-    throw new Error('Error: Topic Creation Failed.');
+    res.status(500).json({ error: "Error getting all topics" });
   }
-};
+});
 
-// Deleting topics
-const deleteTopic = async (id) => {
+topics.get("/:id", async (req, res) => {
   try {
-    const deletedTopic = await db.one("DELETE FROM forum_topics WHERE id=$1 RETURNING *", id);
-    return deletedTopic;
+    const { id } = req.params;
+    const topic = await getTopic(id);
+    if (topic) {
+      res.status(200).json(topic);
+    } else {
+      res.status(404).json({ message: "Topic not found" });
+    }
   } catch (error) {
-    throw new Error('Error: Topic Deletion Failed.');
+    res.status(500).json({ error: "Error getting topic" });
   }
-};
+});
 
-module.exports = { getTopic, getAllTopics, createTopic, deleteTopic };
+topics.post("/", async (req, res) => {
+  try {
+    const newTopic = await createTopic(req.body);
+    if (newTopic) {
+      res.status(201).json(newTopic);
+    } else {
+      res.status(400).json({ message: "Topic not created" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Error creating topic" });
+  }
+});
+
+topics.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedTopic = await deleteTopic(id);
+    if (deletedTopic) {
+      res.status(200).json(deletedTopic);
+    } else {
+      res.status(404).json({ message: "Cannot delete topic" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Error deleting topic" });
+  }
+});
+
+module.exports = topics;
