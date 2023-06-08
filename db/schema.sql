@@ -54,26 +54,15 @@ CREATE TABLE IF NOT EXISTS forum_topics (
   is_selected BOOLEAN NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS forum_categories (
-  id SERIAL PRIMARY KEY,
-  category_name VARCHAR(255) NOT NULL,
-  isVentingAndSupport BOOLEAN NOT NULL,
-  isAccessibility BOOLEAN NOT NULL,
-  isVibeCheck BOOLEAN NOT NULL,
-  isFamily BOOLEAN NOT NULL,
-  isHobbies BOOLEAN NOT NULL,
-  isGeneralChat BOOLEAN NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS forums (
   id SERIAL PRIMARY KEY,
   forum_title VARCHAR(200) NOT NULL,
   forum_description TEXT NOT NULL,
   forum_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   forum_posts TEXT NOT NULL,
+  category TEXT,
   user_id INT REFERENCES users(id) ON DELETE CASCADE,
-  category_id INT REFERENCES forum_categories(id) ON DELETE CASCADE,
-  topic_id INT REFERENCES forum_topics(id) ON DELETE CASCA
+  topic_id INT REFERENCES forum_topics(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS forum_replies (

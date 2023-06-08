@@ -46,20 +46,17 @@ INSERT INTO forum_topics (topic_name, is_selected) VALUES
   ('School', false),
   ('Work', false),
   ('Trigger Warning', false);
--- Insert forum categories
-INSERT INTO forum_categories (category_name, isVentingAndSupport, isAccessibility, isVibeCheck, isFamily, isHobbies, isGeneralChat) VALUES
-  ('Venting and Support', true, false, false, false, false, false),
-  ('Accessibility', false, true, false, false, false, false),
-  ('Vibe Check', false, false, true, false, false, false),
-  ('Family', false, false, false, true, false, false),
-  ('Hobbies', false, false, false, false, true, false),
-  ('General Chat', false, false, false, false, false, true);
 
--- Insert forums
-INSERT INTO forums (forum_title, forum_description, forum_posts, user_id, category_id, topic_id) VALUES
-  ('Just Doing Stuff', 'Im unsure', 'Forum 1 Posts', 1, 1, 1),
-  ('Testing This Out', 'This thing', 'Forum 2 Posts', 2, 2, 2),
-  ('Blah blah blah', 'This test', 'Forum 3 Posts', 3, 3, 3);
+INSERT INTO forums (forum_title, forum_description, forum_posts, user_id, category, topic_id)
+VALUES
+  ('Forum about Mental Health', 'Discussion about mental health and well-being', 'Posts about mental health', 1, 'Venting and Support', 1),
+  ('Support for Anxiety', 'Support group for people dealing with anxiety', 'Share your experiences and find support', 2, 'Venting and Support', 2),
+  ('Accessibility in Mental Health', 'Improving accessibility in mental health services', 'Discuss ways to make mental health support more accessible', 3, 'Accessibility', 3),
+  ('Hobbies for Relaxation', 'Sharing hobbies and activities that promote relaxation', 'Discover new hobbies for stress relief', 4, 'Hobbies', 4),
+  ('Coping with Grief and Loss', 'Support group for coping with grief and loss', 'Share your journey and find solace', 1, 'Venting and Support', 5),
+  ('Positive Vibes', 'Spreading positivity and uplifting messages', 'Share inspiring stories and motivational content', 2, 'Vibe Check', 6),
+  ('Family Support', 'Support group for families dealing with mental health challenges', 'Discuss challenges and share resources', 3, 'Family', 7),
+  ('General Chat', 'Open discussion about various topics', 'Engage in casual conversations', 4, 'General Chat', 8);
 
 -- Insert forum replies
 INSERT INTO forum_replies (reply_content, reply_created_at, user_id, forum_id) VALUES
