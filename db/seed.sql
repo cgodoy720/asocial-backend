@@ -7,6 +7,17 @@ VALUES
   ('Jamal', 'Partridge', 'jamalpartridge@pursuit.org', 'Akeem123', '1988-09-29', 'Jamal11', 'https://res.cloudinary.com/dtabunojn/image/upload/v1685955845/12_xqzfma.png', 'he/him', 'I am here just hanging out.'),
   ('Triane', 'Peart', 'TrianePeart@pursuit.org', 'HappyBelly02', '1994-05-22', 'JustCallMeAna', 'https://res.cloudinary.com/dtabunojn/image/upload/v1685955845/4_wcue8d.png', 'she/her', 'Lost in space.');
 
+INSERT INTO journal (user_id, title, content, mood, date)
+VALUES
+  (1, 'First Entry', 'This is my first journal entry.', 'Happy', '2022-01-01'),
+  (1, 'Second Entry', 'Feeling a bit tired today.', 'Tired', '2022-01-02'),
+  (2, 'Reflections', 'Reflecting on the day and its events.', 'Thoughtful', '2022-01-01'),
+  (2, 'New Beginnings', 'Excited about starting a new project.', 'Excited', '2022-01-02'),
+  (3, 'Morning Thoughts', 'Woke up feeling refreshed and ready for the day.', 'Energetic', '2022-01-01'),
+  (3, 'Challenges Ahead', 'Preparing myself for upcoming challenges.', 'Determined', '2022-01-02'),
+  (4, 'Self-Reflection', 'Taking time to reflect on personal growth.', 'Content', '2022-01-01'),
+  (4, 'Gratitude Journal', 'Listing things I am grateful for today.', 'Grateful', '2022-01-02');
+
 INSERT INTO messages (text, timestamp,user_id) VALUES
 ('Hello','2023-05-14T08:30:00.000Z',1),
 ('How are you?','2023-05-14T08:31:00.000Z',2),

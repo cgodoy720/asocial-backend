@@ -17,6 +17,16 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE (username)
 );
 
+CREATE TABLE IF NOT EXISTS journal (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER,
+  title VARCHAR,
+  content TEXT,
+  mood VARCHAR,
+  date DATE,
+  FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
 -- messages 
 CREATE TABLE IF NOT EXISTS messages (
   id SERIAL PRIMARY KEY,
