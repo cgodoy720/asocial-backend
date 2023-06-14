@@ -71,8 +71,7 @@ CREATE TABLE IF NOT EXISTS forums (
   forum_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   forum_posts TEXT NOT NULL,
   category TEXT,
-  user_id INT REFERENCES users(id) ON DELETE CASCADE,
-  topic_id INT REFERENCES forum_topics(id) ON DELETE CASCADE
+  user_id INT REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS forum_replies (

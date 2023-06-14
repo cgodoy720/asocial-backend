@@ -26,17 +26,17 @@ const getForum = async (id) => {
 const createForum = async (forum) => {
   try {
     const query =
-      "INSERT INTO forums (forum_title, forum_description, forum_posts, user_id, category, topic_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
+      "INSERT INTO forums (forum_title, forum_description, forum_posts, user_id, category) VALUES ($1, $2, $3, $4, $5) RETURNING *";
     const newForum = await db.one(query, [
       forum.forum_title,
       forum.forum_description,
       forum.forum_posts,
       forum.user_id,
       forum.category,
-      forum.topic_id
     ]);
     return newForum;
   } catch (error) {
+    console.error("Error creating forum:", error);
     throw new Error("Error creating forum");
   }
 };
