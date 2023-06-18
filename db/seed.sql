@@ -18,60 +18,58 @@ VALUES
   (4, 'Self-Reflection', 'Taking time to reflect on personal growth.', 'Content', '2022-01-01'),
   (4, 'Gratitude Journal', 'Listing things I am grateful for today.', 'Grateful', '2022-01-02');
 
-INSERT INTO messages (text, timestamp,user_id) VALUES
-('Hello','2023-05-14T08:30:00.000Z',1),
-('How are you?','2023-05-14T08:31:00.000Z',2),
-('I am doing well, thanks. How about you?','2023-05-14T08:32:00.000Z',1),
-('I am good too.','2023-05-14T08:33:00.000Z',2),
-('That is great!','2023-05-14T08:34:00.000Z',1);
+INSERT INTO badges (badge_type) VALUES
+  ('Parenting'),
+  ('Parents'),
+  ('Siblings'),
+  ('Friends'),
+  ('Mental Health'),
+  ('LGBTQ+'),
+  ('Neurodivergent'),
+  ('Random'),
+  ('Disabilities'),
+  ('General'),
+  ('Home Life'),
+  ('Reflections'),
+  ('Discussions'),
+  ('Games'),
+  ('Sports'),
+  ('Writing'),
+  ('Crafts'),
+  ('Other'),
+  ('School'),
+  ('Work'),
+  ('Trigger Warning');
 
-INSERT INTO locations (name, address, latitude, longitude) VALUES
-('Location 1', '123 Main St, New York, NY', 40.7128, -74.0060),
-('Location 2', '456 Elm St, New York, NY', 40.7127, -74.0059);
+INSERT INTO categories (category_name) VALUES
+  ('Venting and Support'),
+  ('Accessibility'),
+  ('Vibe Check'),
+  ('Family'),
+  ('Hobbies'),
+  ('General Chat');
 
-INSERT INTO reviews (location_id, rating, comment)
+INSERT INTO forums (category_id, user_id, forum_title, forum_description, forum_posts)
 VALUES
-  (1, 4.5, 'Great place to visit!'),
-  (1, 3.8, 'Decent atmosphere, but service could be better.'),
-  (2, 5.0, 'Highly recommended! Friendly staff and delicious food.');
+  (1, 1, 'Forum about Mental Health', 'Discussion about mental health and well-being', 'Posts about mental health'),
+  (1, 2, 'Support for Anxiety', 'Support group for people dealing with anxiety', 'Share your experiences and find support'),
+  (2, 3, 'Accessibility in Mental Health', 'Improving accessibility in mental health services', 'Discuss ways to make mental health support more accessible'),
+  (5, 4, 'Hobbies for Relaxation', 'Sharing hobbies and activities that promote relaxation', 'Discover new hobbies for stress relief'),
+  (1, 1, 'Coping with Grief and Loss', 'Support group for coping with grief and loss', 'Share your journey and find solace'),
+  (3, 2, 'Positive Vibes', 'Spreading positivity and uplifting messages', 'Share inspiring stories and motivational content'),
+  (4, 3, 'Family Support', 'Support group for families dealing with mental health challenges', 'Discuss challenges and share resources'),
+  (6, 4, 'General Chat', 'Open discussion about various topics', 'Engage in casual conversations');
 
-INSERT INTO forum_topics (topic_name, is_selected) VALUES
-  ('Parenting', false),
-  ('Parents', false),
-  ('Siblings', false),
-  ('Friends', false),
-  ('Mental Health', false),
-  ('LGBTQ+', false),
-  ('Neurodivergent', false),
-  ('Random', false),
-  ('Disabilities', false),
-  ('General', false),
-  ('Home Life', false),
-  ('Reflections', false),
-  ('Discussions', false),
-  ('Games', false),
-  ('Sports', false),
-  ('Writing', false),
-  ('Crafts', false),
-  ('Other', false),
-  ('School', false),
-  ('Work', false),
-  ('Trigger Warning', false);
+INSERT INTO forum_badges (forum_id, badge_id) VALUES
+  (1, 1),
+  (1, 2),
+  (2, 3),
+  (3, 4),
+  (4, 5);
 
-INSERT INTO forums (forum_title, forum_description, forum_posts, user_id, category)
-VALUES
-  ('Forum about Mental Health', 'Discussion about mental health and well-being', 'Posts about mental health', 1, 'Venting and Support'),
-  ('Support for Anxiety', 'Support group for people dealing with anxiety', 'Share your experiences and find support', 2, 'Venting and Support'),
-  ('Accessibility in Mental Health', 'Improving accessibility in mental health services', 'Discuss ways to make mental health support more accessible', 3, 'Accessibility'),
-  ('Hobbies for Relaxation', 'Sharing hobbies and activities that promote relaxation', 'Discover new hobbies for stress relief', 4, 'Hobbies'),
-  ('Coping with Grief and Loss', 'Support group for coping with grief and loss', 'Share your journey and find solace', 1, 'Venting and Support'),
-  ('Positive Vibes', 'Spreading positivity and uplifting messages', 'Share inspiring stories and motivational content', 2, 'Vibe Check'),
-  ('Family Support', 'Support group for families dealing with mental health challenges', 'Discuss challenges and share resources', 3, 'Family'),
-  ('General Chat', 'Open discussion about various topics', 'Engage in casual conversations', 4, 'General Chat');
-
--- Insert forum replies
 INSERT INTO forum_replies (reply_content, reply_created_at, user_id, forum_id) VALUES
   ('Reply 1 for Forum 1', CURRENT_TIMESTAMP, 1, 1),
   ('Reply 2 for Forum 1', CURRENT_TIMESTAMP, 2, 1),
   ('Reply 1 for Forum 2', CURRENT_TIMESTAMP, 2, 2),
   ('Reply 1 for Forum 3', CURRENT_TIMESTAMP, 3, 3);
+

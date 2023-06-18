@@ -19,8 +19,7 @@ const getUser = async (id) => {
     throw new Error(`Error getting user with id ${id}`);
   }
 };
-
-//Creating a new user 
+ 
 const createUser = async (user) => {
   try {
     const query =
@@ -33,7 +32,7 @@ const createUser = async (user) => {
       user.username,
       user.dob,
     ]);
-//destructuring newUser
+
     const {
       id,
       first_name,
@@ -45,7 +44,7 @@ const createUser = async (user) => {
       about_me,
       avatar,
     } = newUser;
-//user view data 
+
     const userInfoFrontend = {
       id,
       first_name,
@@ -67,7 +66,7 @@ const getUserLogin = async (login) => {
   try {
     const query = "SELECT * FROM users WHERE email=$1 AND password=$2";
     const aUser = await db.oneOrNone(query, [login.email, login.password]);
-    // destructure the user
+  
     if (aUser) {
       const {
         id,
@@ -81,7 +80,7 @@ const getUserLogin = async (login) => {
         avatar,
       } = aUser;
 
-      // user information for the frontend
+    
       const loginUser = {
         id,
         first_name,
@@ -95,7 +94,7 @@ const getUserLogin = async (login) => {
       };
       return loginUser;
     } else {
-      return null; // User not found
+      return null;
     }
   } catch (error) {
     throw new Error(`Error retrieving user: ${error.message}`);

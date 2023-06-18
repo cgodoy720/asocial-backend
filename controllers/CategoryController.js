@@ -7,7 +7,7 @@ const {
   deleteCategory
 } = require('../queries/categories');
 
-// Get a category by id
+
 categories.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -22,7 +22,7 @@ categories.get('/:id', async (req, res) => {
   }
 });
 
-// Get all categories
+
 categories.get('/', async (_, res) => {
   try {
     const allCategories = await getAllCategories();
@@ -36,7 +36,7 @@ categories.get('/', async (_, res) => {
   }
 });
 
-// Create a category
+
 categories.post('/', async (req, res) => {
   try {
     const category = await createCategory(req.body);
@@ -46,7 +46,6 @@ categories.post('/', async (req, res) => {
   }
 });
 
-// Delete a category
 categories.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {

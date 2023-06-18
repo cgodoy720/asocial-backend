@@ -9,10 +9,6 @@ const {
   updateUser,
 } = require("../queries/user");
 
-// const ForumController = require("./ForumController");
-
-// users.use("/:userId/forums", ForumController);
-
 users.get("/", async (req, res) => {
   try {
     const allUsers = await getAllUsers();

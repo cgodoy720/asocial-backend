@@ -11,9 +11,6 @@ const {
 const RepliesController = require('./RepliesController')
 forum.use('/:forumId/replies', RepliesController)
 
-
-
-// Get all forums
 forum.get("/", async (req, res) => {
   try {
     const allForums = await getAllForums();
@@ -24,7 +21,7 @@ forum.get("/", async (req, res) => {
   }
 });
 
-// Get a specific forum
+
 forum.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -40,7 +37,7 @@ forum.get("/:id", async (req, res) => {
   }
 });
 
-// Create a new forum
+
 forum.post("/", async (req, res) => {
   try {
     const newForum = await createForum(req.body);
@@ -51,7 +48,7 @@ forum.post("/", async (req, res) => {
   }
 });
 
-// Delete a forum
+
 forum.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -63,7 +60,7 @@ forum.delete("/:id", async (req, res) => {
   }
 });
 
-// Update a forum
+
 forum.put("/:id", async (req, res) => {
   const { id } = req.params;
   try {

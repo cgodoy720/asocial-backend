@@ -3,8 +3,10 @@ const cors = require("cors");
 const Port = process.env.PORT;
 const UsersController = require("./controllers/UserController");
 const ForumController = require("./controllers/ForumController");
-const MapController = require("./controllers/MapController");
 const JournalController = require("./controllers/JorunalController");
+const BadgeController = require("./controllers/BadgeController");
+const CategoryController = require("./controllers/CategoryController");
+const ForumBadgesController = require("./controllers/ForumBadgesController")
 
 const app = express();
 
@@ -13,8 +15,10 @@ app.use(express.json());
 app.use(cors());
 app.use("/users", UsersController);
 app.use("/forums", ForumController);
-app.use("/maps", MapController);
 app.use("/journals", JournalController);
+app.use("/badges", BadgeController); 
+app.use("/categories", CategoryController);
+app.use("/forumBadge", ForumBadgesController);
 
 // Routes
 app.get("/", (_, res) => {

@@ -1,56 +1,54 @@
-const db = require('../db/dbConfig');
+const db = require("../db/dbConfig");
 
-// Getting category by id
-const getCategory = async (id) => {
-  try {
-    const category = await db.one("SELECT * FROM forum_categories WHERE id=$1", id);
-    return category;
-  } catch (err) {
-    throw new Error('Error: Category not found.');
-  }
-};
-
-// Getting all categories
 const getAllCategories = async () => {
   try {
-    const allCategories = await db.any("SELECT * FROM forum_categories");
+    const allCategories = await db.any("SELECT * FROM categories");
     return allCategories;
-  } catch (err) {
-    throw new Error('Error: Categories not found.');
+  } catch (error) {
+    return error;
   }
 };
 
-// Creating category
+const getCategory = async (id) => {
+  try {
+    const oneCategory = await db.one("SELECT * FROM categories WHERE id = $1", id);
+    return oneCategory;
+  } catch (error) {
+    return error;
+  }
+};
+
 const createCategory = async (category) => {
   try {
-    const newCategory = await db.one("INSERT INTO forum_categories (category_name, isVentingAndSupport, isAccessibility, isVibeCheck, isFamily, isHobbies, isGeneralChat) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *", [
-      category.category_name,
-      category.isVentingAndSupport,
-      category.isAccessibility,
-      category.isVibeCheck,
-      category.isFamily,
-      category.isHobbies,
-      category.isGeneralChat
-    ]);
+    const newCategory = await db.one(
+      "INSERT INTO categories (category_name) VALUES($1) RETURNING *",
+      [category.name]
+    );
     return newCategory;
   } catch (error) {
-    throw new Error('Error: Category creation failed.');
+    return error;
   }
 };
 
-// Deleting category
 const deleteCategory = async (id) => {
   try {
-    const deletedCategory = await db.one("DELETE FROM forum_categories WHERE id=$1 RETURNING *", id);
+    const deletedCategory = await db.one("DELETE FROM categories WHERE id = $1 RETURNING *", id);
     return deletedCategory;
   } catch (error) {
-    throw new Error('Error: Category deletion failed.');
+    return error;
   }
 };
 
-module.exports = {
-  getAllCategories,
-  getCategory,
-  createCategory,
-  deleteCategory
+const updateCategory = async (id, category) => {
+  try {
+    const updatedCategory = await db.one(
+      "UPDATE categories SET category_name=$1 WHERE id = $2 RETURNING *",
+      [category.name, id]
+    );
+    return updatedCategory;
+  } catch (error) {
+    return error;
+  }
 };
+
+module.exports = { getAllCategories, getCategory, createCategory, deleteCategory, updateCategory };

@@ -2,7 +2,6 @@ const express = require('express');
 const replies = express.Router({ mergeParams: true });
 const { getAllReplies, getReply, createReply, deleteReply, updateReply } = require('../queries/replies');
 
-// INDEX
 replies.get('/', async (req, res) => {
   const { forumId } = req.params;
   try {
@@ -13,7 +12,6 @@ replies.get('/', async (req, res) => {
   }
 });
 
-// SHOW
 replies.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -28,7 +26,6 @@ replies.get('/:id', async (req, res) => {
   }
 });
 
-// CREATE
 replies.post('/', async (req, res) => {
   try {
     const reply = await createReply(req.body);
@@ -38,7 +35,6 @@ replies.post('/', async (req, res) => {
   }
 });
 
-// DELETE
 replies.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -49,7 +45,6 @@ replies.delete('/:id', async (req, res) => {
   }
 });
 
-// UPDATE
 replies.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;

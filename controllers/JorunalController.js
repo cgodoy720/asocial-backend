@@ -8,7 +8,6 @@ const {
   updateJournal
 } = require("../queries/jorunal");
 
-// INDEX
 journals.get("/", async (req, res) => {
   const allJournals = await getAllJournals();
   if (allJournals) {
@@ -18,7 +17,6 @@ journals.get("/", async (req, res) => {
   }
 });
 
-// SHOW
 journals.get("/:id", async (req, res) => {
   const { id } = req.params;
   const journal = await getJournal(id);
@@ -30,7 +28,6 @@ journals.get("/:id", async (req, res) => {
   }
 });
 
-// CREATE
 journals.post("/", async (req, res) => {
   try {
     const journal = await createJournal(req.body);
@@ -40,8 +37,6 @@ journals.post("/", async (req, res) => {
   }
 });
 
-
-// DELETE
 journals.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -52,7 +47,6 @@ journals.delete("/:id", async (req, res) => {
   }
 });
 
-// UPDATE
 journals.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;

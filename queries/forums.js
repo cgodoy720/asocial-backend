@@ -1,6 +1,5 @@
 const db = require("../db/dbConfig");
 
-// Get all forums
 const getAllForums = async () => {
   try {
     const query = "SELECT * FROM forums";
@@ -11,7 +10,6 @@ const getAllForums = async () => {
   }
 };
 
-// Get a specific forum
 const getForum = async (id) => {
   try {
     const query = "SELECT * FROM forums WHERE id = $1";
@@ -22,7 +20,6 @@ const getForum = async (id) => {
   }
 };
 
-// Create a new forum
 const createForum = async (forum) => {
   try {
     const query =
@@ -41,7 +38,6 @@ const createForum = async (forum) => {
   }
 };
 
-// Delete a forum
 const deleteForum = async (id) => {
   try {
     const query = "DELETE FROM forums WHERE id = $1 RETURNING *";
@@ -52,7 +48,6 @@ const deleteForum = async (id) => {
   }
 };
 
-// Update a forum
 const updateForum = async (id, forum) => {
   try {
     const query =
