@@ -1,6 +1,5 @@
-const express = require("express");
 const cors = require("cors");
-const Port = process.env.PORT;
+const express = require("express");
 const UsersController = require("./controllers/UserController");
 const ForumController = require("./controllers/ForumController");
 const JournalController = require("./controllers/JorunalController");
@@ -25,9 +24,9 @@ app.get("/", (_, res) => {
   res.send("Welcome to A-SOCIAL");
 });
 
-// Start the server
-app.listen(Port, () => {
-  console.log(`Server is listening on port ${Port}`);
+// 404 PAGE
+app.get("*", (req, res) => {
+  res.status(404).send("Page not found");
 });
 
 // EXPORT
