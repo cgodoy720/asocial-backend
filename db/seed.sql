@@ -57,13 +57,13 @@ INSERT INTO categories (category_name) VALUES
 INSERT INTO forums (category_id, user_id, forum_title, forum_description, forum_posts)
 VALUES
   (1, 1, 'Forum about Mental Health', 'Discussion about mental health and well-being', 'How do you guys deal with stress? Personally I like to meditate'),
-  (10, 2, 'Support for Anxiety', 'Support group for people dealing with anxiety', 'Share your experiences and find support'),
+  (2, 2, 'Support for Anxiety', 'Support group for people dealing with anxiety', 'Share your experiences and find support'),
   (2, 3, 'Accessibility in Mental Health', 'Improving accessibility in mental health services', 'Discuss ways to make mental health support more accessible'),
   (5, 4, 'Hobbies for Relaxation', 'Sharing hobbies and activities that promote relaxation', 'Discover new hobbies for stress relief'),
   (1, 1, 'Coping with Grief and Loss', 'Support group for coping with grief and loss', 'Share your journey and find solace'),
   (3, 2, 'Positive Vibes', 'Spreading positivity and uplifting messages', 'Share inspiring stories and motivational content'),
   (4, 3, 'Family Support', 'Support group for families dealing with mental health challenges', 'Discuss challenges and share resources'),
-  (5, 2, 'Food discussion,' 'Sharing Recipes and discussing topics', 'What is the best dish you ever made?')
+  (5, 2, 'Food discussion','Sharing Recipes and discussing topics', 'What is the best dish you ever made?'),
   (6, 4, 'General Chat', 'Open discussion about various topics', 'Engage in casual conversations');
 
 INSERT INTO forum_badges (forum_id, badge_id) VALUES
@@ -92,8 +92,6 @@ INSERT INTO forum_replies (reply_content, reply_created_at, user_id, forum_id) V
     ('Supporting families dealing with mental health challenges is crucial for their well-being.', CURRENT_TIMESTAMP, 7, 7),
     ('Its great to have a place for casual conversations and general chat.', CURRENT_TIMESTAMP, 8, 8),
     ('Art and design have always inspired me to express myself creatively.', CURRENT_TIMESTAMP, 9, 9),
-    ('GoldenEye 007 was definitely one of my favorite games too!', CURRENT_TIMESTAMP, 10, 10),
-    ('Cooking has been a passion of mine, and I love trying new recipes!', CURRENT_TIMESTAMP, 1, 11),
     ('Mental health is something we should prioritize in our lives.', CURRENT_TIMESTAMP, 2, 1),
     ('I have struggled with anxiety, and finding support made a huge difference.', CURRENT_TIMESTAMP, 3, 2),
     ('Accessibility in mental health services can help more people get the support they need.', CURRENT_TIMESTAMP, 4, 3),
@@ -102,6 +100,4 @@ INSERT INTO forum_replies (reply_content, reply_created_at, user_id, forum_id) V
     ('Spreading positivity can have a ripple effect on people''s lives.', CURRENT_TIMESTAMP, 7, 6),
     ('Family support is so important in navigating mental health challenges.', CURRENT_TIMESTAMP, 8, 7),
     ('General chat forums provide a space for diverse conversations.', CURRENT_TIMESTAMP, 9, 8),
-    ('Art allows us to express ourselves and find inspiration.', CURRENT_TIMESTAMP, 10, 9),
-    ('Gaming has been a big part of my life, and GoldenEye 007 was an all-time favorite!', CURRENT_TIMESTAMP, 1, 10),
-    ('Sharing recipes and culinary experiences is always exciting!', CURRENT_TIMESTAMP, 2, 11);
+    ('Art allows us to express ourselves and find inspiration.', CURRENT_TIMESTAMP, 10, 9);
