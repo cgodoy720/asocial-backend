@@ -9,6 +9,8 @@ require('dotenv').config()
 //     password: process.env.PG_PASSWORD
 // };
 
+const { DATABASE_URL, PG_HOST, PG_PORT, PG_DATABASE, PG_USER } = process.env;
+
 const cn = DATABASE_URL
   ? {
       connectionString: DATABASE_URL,
