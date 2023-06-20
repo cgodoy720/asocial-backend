@@ -6,7 +6,8 @@ const cn = {
     port: process.env.PG_PORT,
     database: process.env.DATABASE_URL,
     user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD
+    password: process.env.PG_PASSWORD,
+    connectionString: process.env.DATABASE_URL,
 };
 
 console.log(process.env, cn)
