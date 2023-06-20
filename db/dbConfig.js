@@ -9,6 +9,8 @@ const cn = {
     password: process.env.PG_PASSWORD
 };
 
+console.log(process.env, cn)
+
 const db = pgp(cn);
 
 module.exports = db;
